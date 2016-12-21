@@ -15,6 +15,7 @@ router.post('/token', function(req, res, next){
   }
   if (!req.body.name) {
     data.msg = '请填写图片名称'
+    data.code = 101
     res.json(data)
   }
   if (!req.body.path) {
