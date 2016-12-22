@@ -15,7 +15,7 @@ router.post('/token', function(req, res, next){
   }
   res.header('Access-Control-Allow-Origin', '*')
   if (!req.body.name) {
-    data.msg = '请填写图片名称'
+    data.msg = '请填写图片名称字段为name'
     data.code = 101
     res.json(data)
   }
