@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const commonRoute = require('./router/common/token')
 const getRoute = require('./router/get')
 const app = express()
-let port = config.port || 3000
+let port = config.port || 8000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
