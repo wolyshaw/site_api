@@ -13,29 +13,31 @@ router.post('/token', function(req, res, next){
     var putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
     return putPolicy.token();
   }
-  if (!req.body.name) {
-    data.msg = '请填写图片名称字段为name2'
-    data.code = 101
-    res.json(data)
-  }
-  if (!req.body.path) {
-    data.msg = '请选择路径'
-    res.json(data)
-  }
 
-  let bucket = config.qiniu.bucket
+  let bucket = req.body.bucket || config.qiniu.bucket
 
   let key = req.body.path + '/' + req.body.name
 
-  data = {
-    msg: 'token获取成功',
-    code: 200,
-    data: {
-      token: uptoken(bucket, key)
+  if (!req.body.name) {
+    data = {
+      msg: '请填写图片名称字段为name',
+      code: 101
+    }
+  }else if (!req.body.path) {
+    data = {
+      msg: '请选择路径',
+      code: 101
+    }
+  }else{
+    data = {
+      msg: 'token获取成功',
+      code: 200,
+      data: {
+        token: uptoken(bucket, key)
+      }
     }
   }
   res.json(data)
-  res.header('Access-Control-Allow-Origin', '*')
 })
 
 module.exports = router

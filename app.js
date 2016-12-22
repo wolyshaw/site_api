@@ -9,6 +9,13 @@ let port = config.port || 8000
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+if(config.debug){
+  app.post('*', function(req, res, next){
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    next()
+  })
+}
+
 app.use('/', commonRoute)
 app.use('/get', getRoute)
 
