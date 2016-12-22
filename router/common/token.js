@@ -20,7 +20,7 @@ router.post('/token', function(req, res, next){
 
   if (!req.body.name) {
     data = {
-      msg: '请填写图片名称字段为name',
+      msg: '请填写图片名称',
       code: 101
     }
   }else if (!req.body.path) {
