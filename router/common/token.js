@@ -13,6 +13,7 @@ router.post('/token', function(req, res, next){
     var putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
     return putPolicy.token();
   }
+  res.header('Access-Control-Allow-Origin', '*')
   if (!req.body.name) {
     data.msg = '请填写图片名称'
     data.code = 101
@@ -34,7 +35,6 @@ router.post('/token', function(req, res, next){
       token: uptoken(bucket, key)
     }
   }
-  res.header('Access-Control-Allow-Origin', '*')
   res.json(data)
 })
 
