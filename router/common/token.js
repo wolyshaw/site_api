@@ -14,21 +14,18 @@ router.post('/token', function(req, res, next){
     return putPolicy.token();
   }
 
-  let bucket = req.body.bucket || config.qiniu.bucket
+  let bucket = req.body.bucket || config.qiniu.bucket, key,
+    date = new Date(), year = date.getFullYear(), month = (date.getMonth() + 1),
+    path = req.body.path
 
-  let key = req.body.path + '/' + req.body.name
-
-  if (!req.body.name) {
+  if (!req.body.fileName) {
     data = {
       msg: '请填写图片名称',
       code: 101
     }
-  }else if (!req.body.path) {
-    data = {
-      msg: '请选择路径',
-      code: 101
-    }
   }else{
+    key = path ? path + '/' + req.body.fileName : year + '/' + month + '/' + req.body.fileName
+    console.log(key, bucket, path)
     data = {
       msg: 'token获取成功',
       code: 200,
