@@ -1,10 +1,9 @@
 var models       = require('../../models');
-var postModel   = models.post
+var userModel   = models.user
 var config       = require('../../config/config')
 
 module.exports = function(req, res, netx){
-  console.log(req.session)
-  postModel.find().exec((err, data)=>{
+  userModel.find().exec((err, data)=>{
     res.send(data)
   })
 }

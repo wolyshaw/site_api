@@ -1,12 +1,12 @@
 const express = require('express')
-const posts = require('./posts')
+// const posts = require('./posts')
 const post = require('./post')
 const user = require('./user')
 
 let router = express.Router()
 
-router.get('/posts', posts)
-router.get('/post', post)
-router.get('/user:id', user)
+// router.get('/posts', posts)
+router.post('/post', post)
+router.post('/user', user)
 
 module.exports = router
