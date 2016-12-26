@@ -4,18 +4,35 @@ const userModel = models.user
 var config = require('../../config/config')
 
 module.exports = function(req, res, netx){
-  const user = new userModel()
-  let userData = {
-    nice_name: req.body.nice_name,
-    avatar: req.body.avatar,
-    url: req.body.url,
-    email: req.body.email,
-    paone: req.body.paone,
-    name: req.body.name,
-    bio: req.body.bio
+  let sendData
+  if (!req.body.nice_name) {
+    sendData = {
+      code: 101,
+      msg: '用户昵称有误'
+    }
+    res.send(sendData)
+    return
   }
+  console.log(546798089)
+  const user = new userModel()
+  user.nice_name = req.body.nice_name
+  user.password = req.body.password
+  user.email = req.body.email
   req.session.user = userData
-  res.send(userData)
-  // user = userData
-  // user.save(res.send('user'))
+  user.save((err, data)=>{
+    if (err) {
+      sendData = {
+        code: 102,
+        msg: '数据保存错误'
+      }
+    }else{
+      sendData = {
+        code: 200,
+        msg: '数据保存成功',
+        data: data
+      }
+      sendData.data.password = '*'
+    }
+  })
+  res.send(sendData)
 }

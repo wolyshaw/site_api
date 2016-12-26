@@ -29,7 +29,7 @@ var postSchema = new Schema({
     bio: {
       type: String
     },
-    reg_date: {
+    create_at: {
       type: Date,
       default: Date.now
     }

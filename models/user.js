@@ -15,7 +15,7 @@ var userSchema = new Schema({
       type: String
     },
     email: {
-      type: Number
+      type: String
     },
     paone: {
       type: String
@@ -24,6 +24,9 @@ var userSchema = new Schema({
       type: String
     },
     nice_name: {
+      type: String
+    },
+    password: {
       type: String
     },
     bio: {

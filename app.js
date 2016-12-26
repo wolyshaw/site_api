@@ -21,7 +21,6 @@ app.use(session({
 if(config.debug){
   app.post('*', function(req, res, next){
     res.setHeader("Access-Control-Allow-Origin", "*")
-    console.log(req.session.user)
     next()
   })
 }
