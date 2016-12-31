@@ -8,6 +8,13 @@ qiniu.conf.SECRET_KEY = config.qiniu.SecretKey
 let router = express.Router()
 
 router.post('/token', function(req, res, next){
+  if (req.session.user) {
+    res.send({
+      msg: '请先登录',
+      code: 100
+    })
+    return
+  }
   let data = {}
   let uptoken = function(bucket, key) {
     var putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
@@ -19,21 +26,22 @@ router.post('/token', function(req, res, next){
     path = req.body.path
 
   if (!req.body.fileName) {
-    data = {
+    res.send({
       msg: '请填写图片名称',
       code: 101
-    }
-  }else{
-    key = path ? path + '/' + req.body.fileName : year + '/' + month + '/' + req.body.fileName
-    console.log(key, bucket, path)
-    data = {
-      msg: 'token获取成功',
-      code: 200,
-      data: {
-        token: uptoken(bucket, key)
-      }
+    })
+    return
+  }
+
+  key = path ? path + '/' + req.body.fileName : year + '/' + month + '/' + req.body.fileName
+  data = {
+    msg: 'token获取成功',
+    code: 200,
+    data: {
+      token: uptoken(bucket, key)
     }
   }
+
   res.json(data)
 })
 
