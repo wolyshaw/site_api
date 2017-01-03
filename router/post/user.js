@@ -1,7 +1,7 @@
 const models = require('../../models')
-const User = models.user
+const userModel = models.user
 const config = require('../../config/config')
-const user = new User()
+const user = new userModel()
 module.exports = {
   create: function(req, res, netx){
     let sendData
@@ -17,7 +17,7 @@ module.exports = {
     user.password = req.body.password
     user.email = req.body.email
     user.session.user = user
-    User.save((err, data)=>{
+    user.save((err, data)=>{
       if (err) {
         sendData = {
           code: 102,
@@ -34,7 +34,7 @@ module.exports = {
     res.send(sendData)
   },
   update: function(req, res, next){
-    User.findOne({nice_name: req.params.id}, (err, data) => {
+    userModel.findOne({nice_name: req.params.id}, (err, data) => {
       if (err) {
         res.send({
           code: 101,
@@ -42,9 +42,7 @@ module.exports = {
           data: err
         })
         return
-        console.log(err)
       }else{
-        console.log(data)
         if (data) {
           data.password = true
           res.send({

@@ -5,10 +5,8 @@ const config = require('../../config/config')
 qiniu.conf.ACCESS_KEY = config.qiniu.AccessKey
 qiniu.conf.SECRET_KEY = config.qiniu.SecretKey
 
-let router = express.Router()
-
-router.post('/token', function(req, res, next){
-  if (req.session.user) {
+let token = function(req, res, next){
+  if (!req.session.user) {
     res.send({
       msg: '请先登录',
       code: 100
@@ -43,6 +41,6 @@ router.post('/token', function(req, res, next){
   }
 
   res.json(data)
-})
+}
 
-module.exports = router
+module.exports = token
