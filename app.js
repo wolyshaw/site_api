@@ -25,9 +25,9 @@ if(config.debug){
   })
 }
 
-app.use('/', commonRoute)
-app.use('/get', getRoute)
-app.use('/post', postRoute)
+app.use('/_/', commonRoute)
+app.use('/_/get', getRoute)
+app.use('/_/post', postRoute)
 
 app.listen(port, function(){
   console.log(`online in ${port}`)
