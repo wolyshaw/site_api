@@ -25,10 +25,10 @@ if(config.debug){
   })
 }
 
-app.use('/', commonRoute)
-app.use('/get', getRoute)
-app.use('/post', postRoute)
+app.use(config.path + '/', commonRoute)
+app.use(config.path + '/get', getRoute)
+app.use(config.path + '/post', postRoute)
 
 app.listen(port, function(){
-  console.log(`online in ${port}`)
+  console.log(`online in ${port}, api_site root path is ${config.path}`)
 })
