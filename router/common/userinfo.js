@@ -7,7 +7,7 @@ let userinfo = function(req, res, next){
     return
   }
   res.json({
-    msg: '',
+    msg: '获取成功',
     code: 200,
     data: req.session.user
   })
