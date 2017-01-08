@@ -39,8 +39,8 @@ let login = function(req, res, next){
       })
       return
     }
-    req.session.user = data
     data.password = true
+    req.session.user = data
     res.json({
       msg: '登录成功',
       code: 200,
