@@ -12,6 +12,7 @@ module.exports = {
       })
       return
     }
+    console.log(req.body)
     post.title = req.body.title
     post.content = req.body.content
     post.author = req.session.user
@@ -26,7 +27,7 @@ module.exports = {
       }
       res.json({
         msg: '提交成功',
-        code: 201,
+        code: 200,
         data: data
       })
     })
