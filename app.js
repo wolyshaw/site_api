@@ -9,8 +9,9 @@ const postRoute = require('./router/post')
 const app = express()
 let port = config.port || 8000
 
+app.use(bodyParser.raw())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(session({
   name: 'site_api',

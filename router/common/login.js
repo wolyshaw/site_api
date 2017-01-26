@@ -41,6 +41,7 @@ let login = function(req, res, next){
     }
     data.password = true
     req.session.user = data
+    console.log(req.session.user)
     res.json({
       msg: '登录成功',
       code: 200,
