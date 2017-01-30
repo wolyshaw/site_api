@@ -3,6 +3,7 @@ const userModel = models.user
 const config = require('../../config/config')
 
 let login = function(req, res, next){
+  console.log(req.cookies)
   if (req.session.user) {
     res.json({
       msg: '您已登录',
@@ -41,7 +42,6 @@ let login = function(req, res, next){
     }
     data.password = true
     req.session.user = data
-    console.log(req.session.user)
     res.json({
       msg: '登录成功',
       code: 200,

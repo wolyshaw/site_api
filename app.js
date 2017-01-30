@@ -16,7 +16,8 @@ app.use(cookieParser())
 app.use(session({
   name: 'site_api',
   secret: config.sessionSecret,
-  cookie: { maxAge: 60 * 1000 }
+  cookie: { maxAge: 60 * 1000 },
+  HttpOnly: false
 }))
 
 if(config.debug){
