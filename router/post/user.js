@@ -9,7 +9,6 @@ let postUser = {
         throw err
         return
       }
-      console.log(name, data)
       return data
     })
   },
@@ -23,7 +22,28 @@ let postUser = {
       res.send(sendData)
       return
     }
-    console.log(postUser.findByName(req.body.nice_name), 'postUser')
+    if (!req.body.password) {
+      sendData = {
+        code: 101,
+        msg: '用户密码有误'
+      }
+      res.send(sendData)
+      return
+    }
+    if (!req.body.email) {
+      sendData = {
+        code: 101,
+        msg: 'email有误'
+      }
+      res.send(sendData)
+      return
+    }
+    // console.log(postUser.findByName(req.body.nice_name), 'postUser')
+    // res.send({
+    //   code: 101,
+    //   msg: 'gjhg'
+    // })
+    // return
     if (postUser.findByName(req.body.nice_name)) {
       res.json({
         code: 103,

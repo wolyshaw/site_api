@@ -10,6 +10,9 @@ var postSchema = new Schema({
   content: {
     type: String
   },
+  summary: {
+    type: String
+  },
   author: {
     author_id: {
       type: ObjectId
@@ -62,7 +65,8 @@ var postSchema = new Schema({
     default: Date.now
   },
   content_is_html: {
-    type: Boolean
+    type: Boolean,
+    default: true
   },
   ctegory: {
     type: String

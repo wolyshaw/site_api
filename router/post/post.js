@@ -1,6 +1,5 @@
 const models = require('../../models')
 const postModel = models.post
-const post = new postModel()
 var config = require('../../config/config')
 
 module.exports = {
@@ -12,10 +11,18 @@ module.exports = {
       })
       return
     }
-    console.log(req.body)
-    post.title = req.body.title
-    post.content = req.body.content
-    post.author = req.session.user
+    let post = new postModel({
+      title: req.body.title,
+      content: req.body.content,
+      summary: req.body.summary,
+      author: req.session.user
+    })
+    console.log(post)
+    // res.json({
+    //   code: 000,
+    //   msg: '测试'
+    // })
+    // return
     post.save((err, data) => {
       if (err) {
         res.json({
@@ -33,8 +40,6 @@ module.exports = {
     })
   },
   update: function(req, res, next){
-    console.log(req.session.user)
-    console.log(post.update)
     res.json({code: 100, mas: 'err123'})
   }
 }
