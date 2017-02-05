@@ -17,12 +17,6 @@ module.exports = {
       summary: req.body.summary,
       author: req.session.user
     })
-    console.log(post)
-    // res.json({
-    //   code: 000,
-    //   msg: '测试'
-    // })
-    // return
     post.save((err, data) => {
       if (err) {
         res.json({
