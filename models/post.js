@@ -14,10 +14,13 @@ var postSchema = new Schema({
     type: String
   },
   author: {
-    author_id: {
+    _id: {
       type: ObjectId
     },
     url: {
+      type: String
+    },
+    avatar: {
       type: String
     },
     email: {
