@@ -20,12 +20,12 @@ app.use(session({
   HttpOnly: false
 }))
 
-if(config.debug){
+// if(config.debug){
   app.post('*', function(req, res, next){
     res.setHeader('Access-Control-Allow-Origin', '*')
     next()
   })
-}
+// }
 
 app.use(config.path + '/', commonRoute)
 app.use(config.path + '/get', getRoute)
