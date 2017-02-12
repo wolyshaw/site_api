@@ -7,7 +7,7 @@ const commonRoute = require('./router/common')
 const getRoute = require('./router/get')
 const postRoute = require('./router/post')
 const app = express()
-let port = config.port || 8000
+let port = config.port || 8080
 
 app.use(bodyParser.raw())
 app.use(bodyParser.json())
@@ -20,12 +20,14 @@ app.use(session({
   HttpOnly: false
 }))
 
-// if(config.debug){
+if(config.debug){
   app.post('*', function(req, res, next){
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
+    res.setHeader('Access-Control-Allow-Credentials', 'true')
+    res.setHeader('Access-Control-Max-Age', '86400')
     next()
   })
-// }
+}
 
 app.use(config.path + '/', commonRoute)
 app.use(config.path + '/get', getRoute)

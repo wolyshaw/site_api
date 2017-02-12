@@ -11,6 +11,20 @@ module.exports = {
       })
       return
     }
+    if (!req.body.title) {
+      res.json({
+        msg: '文章标题必填',
+        code: 100
+      })
+      return
+    }
+    if (!req.body.content) {
+      res.json({
+        msg: '文章内容必填',
+        code: 100
+      })
+      return
+    }
     let post = new postModel({
       title: req.body.title,
       content: req.body.content,
