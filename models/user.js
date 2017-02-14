@@ -9,7 +9,7 @@ var userSchema = new Schema({
     },
     avatar: {
       type: String,
-      default: '//tucdn.abcdea.com/1/1.png'
+      default: '//dn-abcdea.qbox.me/1/1.png'
     },
     url: {
       type: String
