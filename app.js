@@ -19,7 +19,7 @@ app.use(session({
   cookie: { maxAge: 15 * 60 * 1000 },
   HttpOnly: false
 }))
-
+app.use('/uploads', express.static('uploads'))
 if(config.debug){
   app.post('*', function(req, res, next){
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')

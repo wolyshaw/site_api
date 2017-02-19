@@ -15,32 +15,47 @@ let token = function(req, res, next){
   }
   let data = {}
   let uptoken = function(bucket, key) {
-    var putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
-    return putPolicy.token();
+    var putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key)
+    return putPolicy.token()
   }
 
-  let bucket = req.body.bucket || config.qiniu.bucket, key,
-    date = new Date(), year = date.getFullYear(), month = (date.getMonth() + 1),
-    path = req.body.path
+  let bucket = req.body.bucket || config.qiniu.bucket, key, qntoken, filePath,
+    date = new Date(), year = date.getFullYear(), month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
 
-  if (!req.body.fileName) {
+  key = year + '/' + month + '/' + req.file.originalname
+
+  if (!req.file) {
     res.send({
-      msg: '请填写图片名称',
+      msg: '请选择图片, 并且只支持图片',
       code: 101
     })
     return
   }
 
-  key = path ? path + '/' + req.body.fileName : year + '/' + month + '/' + req.body.fileName
-  data = {
-    msg: 'token获取成功',
-    code: 200,
-    data: {
-      token: uptoken(bucket, key)
-    }
-  }
+  qntoken = uptoken(bucket, key)
+  filePath = req.file.path
 
-  res.json(data)
+
+  let uploadFile = function (uptoken, key, localFile) {
+
+    var extra = new qiniu.io.PutExtra()
+      qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
+        if(err) {
+          data = {
+            msg: '上传失败',
+            code: 200
+          }
+        } else {
+          data = {
+            msg: '上传成功',
+            code: 200,
+            data: ret
+          }
+        }
+      res.json(data)
+    })
+  }
+  uploadFile(qntoken, key, filePath)
 }
 
 module.exports = token
