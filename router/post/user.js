@@ -38,13 +38,7 @@ let postUser = {
       res.send(sendData)
       return
     }
-    // console.log(postUser.findByName(req.body.nice_name), 'postUser')
-    // res.send({
-    //   code: 101,
-    //   msg: 'gjhg'
-    // })
-    // return
-    if (postUser.findByName(req.body.nice_name)) {
+    if (userModel.find({$or: [{nice_name: req.body.nice_name}, {email: req.body.email}]})) {
       res.json({
         code: 103,
         msg: '该名称已存在'
