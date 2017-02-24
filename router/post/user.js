@@ -3,15 +3,6 @@ const userModel = models.user
 const config = require('../../config/config')
 let user = new userModel()
 let postUser = {
-  findByName: function(name, next){
-    userModel.findOne({nice_name: name}, (err, data) => {
-      if (err) {
-        throw err
-        return
-      }
-      return data
-    })
-  },
   create: function(req, res, netx){
     let sendData
     if (!req.body.nice_name) {

@@ -12,12 +12,8 @@ mongoose.connect(config.db, {
 
 require('./user')
 require('./post')
-// require('./reply');
-// require('./topic_collect');
-// require('./message');
-//
+require('./class')
+
 exports.user = mongoose.model('user')
 exports.post = mongoose.model('post')
-// exports.Reply        = mongoose.model('Reply');
-// exports.TopicCollect = mongoose.model('TopicCollect');
-// exports.Message      = mongoose.model('Message');
+exports.class = mongoose.model('class')
