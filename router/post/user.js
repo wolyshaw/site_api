@@ -29,15 +29,16 @@ let postUser = {
       res.send(sendData)
       return
     }
-    if (userModel.find({$or: [{nice_name: req.body.nice_name}, {email: req.body.email}]})) {
-      res.json({
-        code: 103,
-        msg: '该名称已存在'
-      })
-      return
-    }
+    // if (userModel.find({$or: [{nice_name: req.body.nice_name}, {email: req.body.email}]})) {
+    //   res.json({
+    //     code: 103,
+    //     msg: '该名称已存在'
+    //   })
+    //   return
+    // }
     user.nice_name = req.body.nice_name
     user.password = req.body.password
+    user.picture = req.body.picture
     user.email = req.body.email
     user.save((err, data)=>{
       if (err) {

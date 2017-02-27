@@ -23,6 +23,9 @@ var userSchema = new Schema({
     name: {
       type: String
     },
+    picture: {
+      type: String
+    },
     nice_name: {
       type: String
     },
@@ -45,5 +48,7 @@ var userSchema = new Schema({
       default: Date.now
     }
 })
+
+userSchema.index({nice_name: 1}, {unique: true})
 
 mongoose.model('user', userSchema)

@@ -29,6 +29,7 @@ module.exports = {
       title: req.body.title,
       content: req.body.content,
       summary: req.body.summary,
+      picture: req.body.picture,
       author: req.session.user
     })
     post.save((err, data) => {

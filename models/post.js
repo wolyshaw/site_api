@@ -13,6 +13,9 @@ var postSchema = new Schema({
   summary: {
     type: String
   },
+  picture: {
+    type: String
+  },
   author: {
     _id: {
       type: ObjectId
@@ -71,10 +74,7 @@ var postSchema = new Schema({
     type: Boolean,
     default: true
   },
-  ctegory: {
-    type: String
-  },
-  tags: {
+  class: {
     type: String
   },
   status: {

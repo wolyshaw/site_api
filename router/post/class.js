@@ -1,5 +1,6 @@
 const models = require('../../models')
 const classModel = models.class
+const util = require('../../util')
 var config = require('../../config/config')
 
 module.exports = {
@@ -18,19 +19,14 @@ module.exports = {
       })
       return
     }
-    classModel.find({alias: req.body.alias}).exec((err, data) => {
-      if (err) {
-        console.log(err)
-      }
-      console.log(data)
-      if (data) {
-        res.json({
-          code: 103,
-          msg: '该名称已存在'
-        })
-        return
-      }
-    })
+console.log(util.onlyClass(req, classModel))
+    // if (onlyClass) {
+    //   res.json({
+    //     code: 103,
+    //     msg: '该名称已存在'
+    //   })
+    //   return
+    // }
     if (!req.body.alias) {
       res.json({
         msg: '分类别名必填',
