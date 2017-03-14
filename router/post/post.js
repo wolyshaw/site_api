@@ -3,7 +3,7 @@ const postModel = models.post
 var config = require('../../config/config')
 
 module.exports = {
-  create: function(req, res, netx){
+  create: (req, res, netx) => {
     if (!req.session.user) {
       res.json({
         msg: '未登录请重新登录或者注册',
@@ -48,7 +48,7 @@ module.exports = {
       })
     })
   },
-  update: function(req, res, next){
+  update: (req, res, next) => {
     res.json({code: 100, mas: 'err123'})
   }
 }

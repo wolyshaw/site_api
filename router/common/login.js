@@ -2,7 +2,7 @@ const models = require('../../models')
 const userModel = models.user
 const config = require('../../config/config')
 
-let login = function(req, res, next){
+let login = (req, res, next) => {
   if (req.session.user) {
     res.json({
       msg: '您已登录',

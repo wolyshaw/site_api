@@ -3,7 +3,7 @@ const userModel = models.user
 const config = require('../../config/config')
 let user = new userModel()
 let postUser = {
-  create: function(req, res, netx){
+  create: (req, res, netx) => {
     let sendData
     if (!req.body.nice_name) {
       sendData = {
@@ -29,13 +29,7 @@ let postUser = {
       res.send(sendData)
       return
     }
-    // if (userModel.find({$or: [{nice_name: req.body.nice_name}, {email: req.body.email}]})) {
-    //   res.json({
-    //     code: 103,
-    //     msg: '该名称已存在'
-    //   })
-    //   return
-    // }
+
     user.nice_name = req.body.nice_name
     user.password = req.body.password
     user.picture = req.body.picture
@@ -57,7 +51,7 @@ let postUser = {
       })
     })
   },
-  update: function(req, res, next){
+  update: (req, res, next) => {
     userModel.findOne({nice_name: req.params.id}, (err, data) => {
       if (err) {
         res.json({

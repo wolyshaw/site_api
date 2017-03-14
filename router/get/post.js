@@ -2,8 +2,8 @@ var models = require('../../models')
 var config = require('../../config/config')
 var postModel = models.post
 
-module.exports = function(req, res, netx) {
-  postModel.findOne({_id: req.body.id}).exec((err, data)=>{
+module.exports = (req, res, netx) => {
+  postModel.findOne({_id: req.body.id}).exec((err, data) => {
     if (err) {
       res.json({
         msg: '数据库出错',

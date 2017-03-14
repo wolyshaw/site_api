@@ -1,4 +1,4 @@
-let userinfo = function(req, res, next){
+let userinfo = (req, res, next) => {
   if (!req.session.user) {
     res.json({
       msg: '暂未登录',

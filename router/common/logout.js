@@ -1,7 +1,7 @@
 const models = require('../../models')
 const userModel = models.user
 
-let logout = function(req, res, next){
+let logout = (req, res, next) => {
   req.session.user = undefined
   res.json({
     msg: '您已安全退出登录',

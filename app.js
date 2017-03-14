@@ -21,7 +21,7 @@ app.use(session({
 }))
 app.use('/uploads', express.static('uploads'))
 if(config.debug){
-  app.post('*', function(req, res, next){
+  app.post('*', (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
     res.setHeader('Access-Control-Allow-Credentials', 'true')
     res.setHeader('Access-Control-Max-Age', '86400')
@@ -33,6 +33,6 @@ app.use(config.path + '/', commonRoute)
 app.use(config.path + '/get', getRoute)
 app.use(config.path + '/post', postRoute)
 
-app.listen(port, function(){
+app.listen(port, () => {
   console.log(`online in ${port}, api_site root path is ${config.path}`)
 })

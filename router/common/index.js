@@ -5,7 +5,7 @@ const logout = require('./logout')
 const userinfo = require('./userinfo')
 const multer  = require('multer')
 
-const fileFilter = function(req, file, cb) {
+const fileFilter = (req, file, cb) => {
   cb(null, /\image/.test(file.mimetype))
 }
 

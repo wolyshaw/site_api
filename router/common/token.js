@@ -5,7 +5,7 @@ const config = require('../../config/config')
 qiniu.conf.ACCESS_KEY = config.qiniu.AccessKey
 qiniu.conf.SECRET_KEY = config.qiniu.SecretKey
 
-let token = function(req, res, next){
+let token = (req, res, next) => {
   if (!req.session.user) {
     res.send({
       msg: '请先登录',
@@ -14,7 +14,7 @@ let token = function(req, res, next){
     return
   }
   let data = {}
-  let uptoken = function(bucket, key) {
+  let uptoken = (bucket, key) => {
     var putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key)
     return putPolicy.token()
   }
@@ -36,10 +36,10 @@ let token = function(req, res, next){
   filePath = req.file.path
 
 
-  let uploadFile = function (uptoken, key, localFile) {
+  let uploadFile = (uptoken, key, localFile) => {
 
     var extra = new qiniu.io.PutExtra()
-      qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
+      qiniu.io.putFile(uptoken, key, localFile, extra, (err, ret) => {
         if(err) {
           data = {
             msg: '上传失败',
