@@ -27,7 +27,8 @@ var userSchema = new Schema({
       type: String
     },
     nice_name: {
-      type: String
+      type: String,
+      unique: true
     },
     password: {
       type: String
@@ -49,6 +50,6 @@ var userSchema = new Schema({
     }
 })
 
-userSchema.index({nice_name: 1}, {unique: true})
+userSchema.index({nice_name: 1,cellPhone:1,sender:1,tag:1,behaviour:1}, {unique: true})
 
 mongoose.model('user', userSchema)
